@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chocolate Day 🍫</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#fff1d6,#fffaf2);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Poppins,sans-serif;
+  overflow:hidden;
+  padding:15px;
+}
+
+/* Falling love */
+.fall{
+  position:absolute;
+  top:-10%;
+  font-size:20px;
+  opacity:.5;
+  animation:fall linear infinite;
+  pointer-events:none;
+}
+.fall:nth-child(1){left:10%;animation-duration:12s}
+.fall:nth-child(2){left:30%;animation-duration:10s}
+.fall:nth-child(3){left:55%;animation-duration:14s}
+.fall:nth-child(4){left:75%;animation-duration:11s}
+.fall:nth-child(5){left:90%;animation-duration:13s}
+
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg)}
+}
+
+/* Card */
+.card{
+  background:#fff;
+  max-width:360px;
+  width:100%;
+  padding:24px;
+  border-radius:26px;
+  text-align:center;
+  box-shadow:0 25px 45px rgba(0,0,0,.15);
+  position:relative;
+  animation:appear 1.4s ease;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(30px) scale(.95)}
+  to{opacity:1;transform:none}
+}
+
+.choco-top{
+  font-size:44px;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  50%{transform:translateY(-10px)}
+}
+
+h1{
+  font-family:Sacramento,cursive;
+  font-size:38px;
+  color:#7b3f00;
+  margin:10px 0;
+}
+
+.message{
+  font-size:15px;
+  line-height:1.7;
+  color:#444;
+  margin-top:12px;
+}
+
+.highlight{
+  color:#7b3f00;
+  font-weight:500;
+}
+
+.signature{
+  margin-top:16px;
+  font-family:Sacramento,cursive;
+  font-size:26px;
+  color:#5a2e00;
+}
+
+/* Bottom chocolate button */
+.choco-btn{
+  margin:18px auto 0;
+  font-size:34px;
+  cursor:pointer;
+  animation:bounce 1.6s infinite;
+}
+
+@keyframes bounce{
+  50%{transform:translateY(-6px)}
+}
+
+/* Burst */
+.burst{
+  position:absolute;
+  font-size:18px;
+  animation:burst 1.1s ease-out forwards;
+  pointer-events:none;
+}
+
+@keyframes burst{
+  to{
+    transform:translate(var(--x),var(--y)) rotate(360deg);
+    opacity:0;
+  }
+}
+
+audio{display:none}
+</style>
+</head>
+
+<body>
+
+<!-- Falling background -->
+<div class="fall">🍫</div>
+<div class="fall">🤎</div>
+<div class="fall">💖</div>
+<div class="fall">🍪</div>
+<div class="fall">✨</div>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3c89c1f8f5.mp3">
+</audio>
+
+<div class="card">
+  <div class="choco-top">🍫</div>
+  <h1>Happy Chocolate Day</h1>
+  <span class="highlight">আমার সোনা ফুচু</span><br>
+  <span class="highlight">09/02/2026</span><br><br>
+  <div class="message">
+    চকলেট যেমন মিষ্টি,<br>
+    তুমিও ঠিক তেমনই… 🤍<br><br>
+
+    তোমার হাসিতে<br>
+    আমার সব দুঃখ গলে যায়,<br>
+    ঠিক চকলেটের মতোই। 🍫<br><br>
+
+    <span class="highlight">
+      এই চকলেটটা আমার ভালোবাসার স্বাদ।
+    </span>
+  </div>
+
+  <div class="signature">
+    তোমারই সোনা বুবু ❤️
+  </div>
+
+  <!-- CLICKABLE CHOCOLATE -->
+  <div class="choco-btn" id="chocoBtn">🍫</div>
+</div>
+
+<script>
+const btn=document.getElementById("chocoBtn");
+
+btn.addEventListener("click",e=>{
+  const rect=btn.getBoundingClientRect();
+  const x=rect.left+rect.width/2;
+  const y=rect.top;
+
+  for(let i=0;i<20;i++){
+    const b=document.createElement("div");
+    b.className="burst";
+    b.innerHTML=["🍫","🤎","💖","🍪"][Math.floor(Math.random()*4)];
+    b.style.left=x+"px";
+    b.style.top=y+"px";
+    b.style.setProperty("--x",(Math.random()*240-120)+"px");
+    b.style.setProperty("--y",(Math.random()*-240)+"px");
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),1100);
+  }
+});
+</script>
+
+</body>
+</html>

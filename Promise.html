@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promise Day 🤞</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#e8f3ff,#fffafc);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Poppins,sans-serif;
+  overflow:hidden;
+  padding:10px;
+}
+
+/* Falling promises */
+.fall{
+  position:absolute;
+  top:-10%;
+  font-size:18px;
+  opacity:.4;
+  animation:fall linear infinite;
+  pointer-events:none;
+}
+.fall:nth-child(1){left:12%;animation-duration:12s}
+.fall:nth-child(2){left:28%;animation-duration:10s}
+.fall:nth-child(3){left:46%;animation-duration:14s}
+.fall:nth-child(4){left:64%;animation-duration:11s}
+.fall:nth-child(5){left:82%;animation-duration:13s}
+
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg)}
+}
+
+/* Card */
+.card{
+  background:#fff;
+  max-width:340px;
+  width:100%;
+  padding:20px 18px;   /* 👈 height কমানো */
+  border-radius:24px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.14);
+  animation:appear 1.3s ease;
+  position:relative;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(24px) scale(.95)}
+  to{opacity:1;transform:none}
+}
+
+.promise-icon{
+  font-size:38px;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  50%{transform:translateY(-8px)}
+}
+
+h1{
+  font-family:Sacramento,cursive;
+  font-size:34px;
+  color:#2b6cb0;
+  margin:6px 0;
+}
+
+.message{
+  font-size:14px;
+  line-height:1.65;
+  color:#444;
+  margin-top:8px;
+}
+
+.highlight{
+  color:#2b6cb0;
+  font-weight:500;
+}
+
+.signature{
+  margin-top:12px;
+  font-family:Sacramento,cursive;
+  font-size:24px;
+  color:#1e4e8c;
+}
+
+/* Promise button */
+.promise-btn{
+  margin:12px auto 0;
+  font-size:28px;
+  cursor:pointer;
+  animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.12)}
+}
+
+/* Burst */
+.burst{
+  position:absolute;
+  font-size:16px;
+  animation:burst 1.1s ease-out forwards;
+  pointer-events:none;
+}
+
+@keyframes burst{
+  to{
+    transform:translate(var(--x),var(--y)) rotate(360deg);
+    opacity:0;
+  }
+}
+
+audio{display:none}
+</style>
+</head>
+
+<body>
+
+<!-- Falling background -->
+<div class="fall">🤍</div>
+<div class="fall">✨</div>
+<div class="fall">🤞</div>
+<div class="fall">💫</div>
+<div class="fall">🕊️</div>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/11/04/audio_4b71d7d7f3.mp3">
+</audio>
+
+<div class="card">
+  <div class="promise-icon">🤞</div>
+  <h1>Happy Promise Day</h1>
+  <span class="highlight">আমার সোনা ফুচু</span><br>
+  <span class="highlight"></span>11/02/2026</span><br>
+  <div class="message">
+    আমি নিখুঁত মানুষ নই,<br>
+    ভুল করবো, থামবো, কখনো চুপ থাকবো—<br>
+    কিন্তু <span class="highlight">চলে যাবো না।</span><br><br>
+
+    কথা দিচ্ছি,<br>
+    তোমার হাসির দিনে যেমন থাকবো,<br>
+    তেমনই তোমার চুপ থাকা দিনেও। 🤍<br><br>
+
+    সব সমস্যার সমাধান দিতে না পারি,<br>
+    কিন্তু <span class="highlight">সব সমস্যায় পাশে থাকবো।</span><br><br>
+
+    এই প্রতিশ্রুতি<br>
+    শব্দের না— <span class="highlight">আমার থাকার।</span>
+  </div>
+
+  <div class="signature">
+    শুধু আজ না, কাল না,<br>
+    প্রতিদিনই—<br>
+    তোমারই সোনা বুবু ❤️
+  </div>
+
+  <div class="promise-btn" id="promiseBtn">🤞</div>
+</div>
+
+<script>
+const btn=document.getElementById("promiseBtn");
+
+btn.addEventListener("click",()=>{
+  const r=btn.getBoundingClientRect();
+  const x=r.left+r.width/2;
+  const y=r.top;
+
+  for(let i=0;i<18;i++){
+    const b=document.createElement("div");
+    b.className="burst";
+    b.innerHTML=["🤍","✨","🤞","💫","🕊️"][Math.floor(Math.random()*5)];
+    b.style.left=x+"px";
+    b.style.top=y+"px";
+    b.style.setProperty("--x",(Math.random()*220-110)+"px");
+    b.style.setProperty("--y",(Math.random()*-220)+"px");
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),1100);
+  }
+});
+</script>
+
+</body>
+</html>
