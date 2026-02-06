@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propose Day 💍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#ffe6f0,#fffafc);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Poppins,sans-serif;
+  overflow:hidden;
+  padding:15px;
+}
+
+/* 💖 HEART RAIN BACKGROUND */
+.fall{
+  position:absolute;
+  top:-10%;
+  font-size:20px;
+  opacity:.55;
+  animation:fall linear infinite;
+  pointer-events:none;
+}
+.fall:nth-child(1){left:5%;animation-duration:10s}
+.fall:nth-child(2){left:15%;animation-duration:12s}
+.fall:nth-child(3){left:30%;animation-duration:9s}
+.fall:nth-child(4){left:45%;animation-duration:11s}
+.fall:nth-child(5){left:60%;animation-duration:10s}
+.fall:nth-child(6){left:75%;animation-duration:12s}
+.fall:nth-child(7){left:90%;animation-duration:9s}
+
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg)}
+}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,.97);
+  max-width:360px;
+  width:100%;
+  padding:24px;
+  border-radius:26px;
+  text-align:center;
+  box-shadow:0 25px 45px rgba(0,0,0,.15);
+  animation:appear 1.5s ease;
+  position:relative;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(30px) scale(.95)}
+  to{opacity:1;transform:none}
+}
+
+.ring{
+  font-size:42px;
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+  50%{transform:translateY(-10px)}
+}
+
+h1{
+  font-family:Sacramento,cursive;
+  font-size:38px;
+  color:#e63946;
+  margin:10px 0;
+}
+
+.message{
+  font-size:15px;
+  line-height:1.7;
+  color:#444;
+  margin-top:12px;
+}
+
+.highlight{
+  color:#e63946;
+  font-weight:500;
+}
+
+.signature{
+  margin-top:16px;
+  font-family:Sacramento,cursive;
+  font-size:26px;
+  color:#d62828;
+}
+
+/* CLICKABLE RING */
+.click-ring{
+  font-size:28px;
+  margin-top:14px;
+  cursor:pointer;
+  animation:bounce 1.2s infinite;
+}
+
+@keyframes bounce{
+  50%{transform:translateY(-6px)}
+}
+
+/* BURST */
+.petal{
+  position:absolute;
+  font-size:18px;
+  animation:burst 1s ease-out forwards;
+  pointer-events:none;
+}
+
+@keyframes burst{
+  to{
+    transform:translate(var(--x),var(--y)) rotate(360deg);
+    opacity:0;
+  }
+}
+
+audio{display:none}
+</style>
+</head>
+
+<body>
+
+<!-- ❤️ HEART RAIN -->
+<div class="fall">❤️</div>
+<div class="fall">💞</div>
+<div class="fall">💖</div>
+<div class="fall">💗</div>
+<div class="fall">❤️</div>
+<div class="fall">💞</div>
+<div class="fall">💖</div>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_42a67c0b8f.mp3">
+</audio>
+
+<div class="card">
+  <div class="ring">💍</div>
+  <h1>Happy Propose Day</h1>
+  <span class="highlight">আমার সোনা ফুচু</span><br>
+  <span class="highlight">08/02/2026</span><br>
+  <div class="message">
+    আমি বড় বড় কথা বলতে পারি না,<br>
+    কিন্তু একটা কথা খুব সহজ…<br><br>
+
+    <span class="highlight">আমি তোমার সাথে সারাজীবন কাটাতে চাই।</span><br><br>
+
+    হাসি, কান্না, রাগ, অভিমান—<br>
+    সবকিছুর মাঝেই<br>
+    <span class="highlight">আমি শুধু তোমাকেই চাই।</span> 🤍<br><br>
+
+    <span class="highlight">আমি তোমাকে অনেক অনেক ভালোবাসি। ❤️</span><br><br>
+
+    তুমি কি আমার হয়ে থাকবে? 💖
+  </div>
+
+  <div class="signature">
+    তোমার হাতটা ধরেই,<br>
+    সারাজীবন হাঁটতে চাই…<br>
+    আমার সোনা ফুচু ❤️
+  </div>
+
+  <!-- CLICKABLE RING -->
+  <div class="click-ring" id="ringClick">💍</div>
+</div>
+
+<script>
+const ring=document.getElementById("ringClick");
+
+ring.addEventListener("click",e=>{
+  for(let i=0;i<20;i++){
+    const p=document.createElement("div");
+    p.className="petal";
+    p.innerHTML=["💖","✨","💍","💞"][Math.floor(Math.random()*4)];
+    p.style.left=e.clientX+"px";
+    p.style.top=e.clientY+"px";
+    p.style.setProperty("--x",(Math.random()*240-120)+"px");
+    p.style.setProperty("--y",(Math.random()*-240)+"px");
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1000);
+  }
+});
+</script>
+
+</body>
+</html>
