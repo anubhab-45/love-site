@@ -13,7 +13,7 @@
 body{
   margin:0;
   min-height:100vh;
-  background:linear-gradient(180deg,#eaf2ff,#ffffff);
+  background:linear-gradient(135deg,#e8f3ff,#fffafc);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -22,43 +22,50 @@ body{
   padding:10px;
 }
 
-/* TIME PARTICLES */
+/* 🌧 Falling emotions */
 .fall{
   position:absolute;
   top:-10%;
-  font-size:16px;
-  opacity:.25;
-  animation:fall 20s linear infinite;
+  font-size:18px;
+  opacity:.4;
+  animation:fall linear infinite;
   pointer-events:none;
 }
-.fall:nth-child(1){left:15%}
-.fall:nth-child(2){left:35%}
-.fall:nth-child(3){left:55%}
-.fall:nth-child(4){left:75%}
+.fall:nth-child(1){left:10%;animation-duration:12s}
+.fall:nth-child(2){left:28%;animation-duration:10s}
+.fall:nth-child(3){left:46%;animation-duration:14s}
+.fall:nth-child(4){left:64%;animation-duration:11s}
+.fall:nth-child(5){left:82%;animation-duration:13s}
 
 @keyframes fall{
-  to{transform:translateY(120vh)}
+  to{transform:translateY(120vh) rotate(360deg)}
 }
 
-/* CARD */
+/* 💌 CARD */
 .card{
   background:#fff;
   max-width:340px;
   width:100%;
-  padding:20px 18px;
+  padding:20px 18px 58px; /* 👈 নিচে জায়গা রাখা */
   border-radius:24px;
   text-align:center;
-  box-shadow:0 25px 50px rgba(0,0,0,.15);
+  box-shadow:0 20px 40px rgba(0,0,0,.14);
+  animation:appear 1.3s ease;
   position:relative;
 }
 
-/* CLOCK */
-.clock{
-  font-size:40px;
-  animation:tick 2s infinite;
+@keyframes appear{
+  from{opacity:0;transform:translateY(24px) scale(.95)}
+  to{opacity:1;transform:none}
 }
-@keyframes tick{
-  50%{transform:rotate(5deg)}
+
+.promise-icon{
+  font-size:38px;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  50%{transform:translateY(-8px)}
 }
 
 h1{
@@ -75,13 +82,6 @@ h1{
   margin-top:8px;
 }
 
-.message span{
-  display:block;
-  opacity:0;
-  transform:translateY(10px);
-  transition:all 1s ease;
-}
-
 .highlight{
   color:#2b6cb0;
   font-weight:500;
@@ -92,37 +92,36 @@ h1{
   font-family:Sacramento,cursive;
   font-size:24px;
   color:#1e4e8c;
-  opacity:0;
-  transition:opacity 2s ease;
 }
 
-/* PROMISE BUTTON */
+/* 🤞 FIXED PROMISE BUTTON */
 .promise-btn{
-  margin:14px auto 0;
-  font-size:28px;
+  position:absolute;
+  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:30px;
   cursor:pointer;
-  animation:pulse 1.6s infinite;
-}
-@keyframes pulse{
-  50%{transform:scale(1.15)}
+  animation:pulse 1.4s infinite;
 }
 
-/* DROPS */
-.drop{
+@keyframes pulse{
+  50%{transform:translateX(-50%) scale(1.15)}
+}
+
+/* ✨ BURST */
+.burst{
   position:absolute;
   font-size:16px;
-  animation:drop 2s ease-out forwards;
+  animation:burst 1.1s ease-out forwards;
   pointer-events:none;
 }
-@keyframes drop{
+
+@keyframes burst{
   to{
-    transform:translateY(160px);
+    transform:translate(var(--x),var(--y)) rotate(360deg);
     opacity:0;
   }
-}
-
-.freeze *{
-  animation-play-state:paused !important;
 }
 
 audio{display:none}
@@ -131,72 +130,68 @@ audio{display:none}
 
 <body>
 
-<div class="fall">⏳</div>
+<!-- 🌧 background -->
 <div class="fall">🤍</div>
-<div class="fall">⏳</div>
-<div class="fall">🤍</div>
+<div class="fall">✨</div>
+<div class="fall">🤞</div>
+<div class="fall">💫</div>
+<div class="fall">🕊️</div>
 
 <audio autoplay loop>
   <source src="https://cdn.pixabay.com/audio/2022/11/04/audio_4b71d7d7f3.mp3">
 </audio>
 
-<div class="card" id="card">
-  <div class="clock">🕰️</div>
+<div class="card">
+  <div class="promise-icon">🤞</div>
   <h1>Happy Promise Day</h1>
+
   <span class="highlight">আমার সোনা ফুচু</span><br>
   <span class="highlight">11/02/2026</span>
 
-  <div class="message" id="msg">
-    <span>আমি নিখুঁত মানুষ নই,</span>
-    <span>ভুল করবো, থামবো, কখনো চুপ থাকবো—</span>
-    <span>কিন্তু <span class="highlight">চলে যাবো না।</span></span><br>
+  <div class="message">
+    আমি নিখুঁত মানুষ নই,<br>
+    ভুল করবো, থামবো, কখনো চুপ থাকবো—<br>
+    কিন্তু <span class="highlight">চলে যাবো না।</span><br><br>
 
-    <span>কথা দিচ্ছি,</span>
-    <span>তোমার হাসির দিনে যেমন থাকবো,</span>
-    <span>তেমনই তোমার চুপ থাকা দিনেও। 🤍</span><br>
+    কথা দিচ্ছি,<br>
+    তোমার হাসির দিনে যেমন থাকবো,<br>
+    তেমনই তোমার চুপ থাকা দিনেও। 🤍<br><br>
 
-    <span>সব সমস্যার সমাধান দিতে না পারি,</span>
-    <span>কিন্তু <span class="highlight">সব সমস্যায় পাশে থাকবো।</span></span><br>
+    সব সমস্যার সমাধান দিতে না পারি,<br>
+    কিন্তু <span class="highlight">সব সমস্যায় পাশে থাকবো।</span><br><br>
 
-    <span>এই প্রতিশ্রুতি</span>
-    <span>শব্দের না— <span class="highlight">আমার থাকার।</span></span>
+    এই প্রতিশ্রুতি<br>
+    শব্দের না— <span class="highlight">আমার থাকার।</span>
   </div>
 
-  <div class="signature" id="sign">
+  <div class="signature">
     শুধু আজ না, কাল না,<br>
     প্রতিদিনই—<br>
     তোমারই সোনা বুবু ❤️
   </div>
 
+  <!-- 🤞 CLICK HERE -->
   <div class="promise-btn" id="promiseBtn">🤞</div>
 </div>
 
 <script>
 const btn=document.getElementById("promiseBtn");
-const lines=document.querySelectorAll(".message span");
-const sign=document.getElementById("sign");
-const body=document.body;
 
 btn.addEventListener("click",()=>{
-  body.classList.add("freeze");
+  const r=btn.getBoundingClientRect();
+  const x=r.left+r.width/2;
+  const y=r.top;
 
-  lines.forEach((line,i)=>{
-    setTimeout(()=>{
-      line.style.opacity="1";
-      line.style.transform="none";
-    }, i*600);
-  });
-
-  setTimeout(()=>sign.style.opacity="1", lines.length*600);
-
-  for(let i=0;i<10;i++){
-    const d=document.createElement("div");
-    d.className="drop";
-    d.innerHTML="🤍";
-    d.style.left=Math.random()*100+"vw";
-    d.style.top="30vh";
-    document.body.appendChild(d);
-    setTimeout(()=>d.remove(),2000);
+  for(let i=0;i<18;i++){
+    const b=document.createElement("div");
+    b.className="burst";
+    b.innerHTML=["🤍","✨","🤞","💫","🕊️"][Math.floor(Math.random()*5)];
+    b.style.left=x+"px";
+    b.style.top=y+"px";
+    b.style.setProperty("--x",(Math.random()*220-110)+"px");
+    b.style.setProperty("--y",(Math.random()*-220)+"px");
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),1100);
   }
 });
 </script>
