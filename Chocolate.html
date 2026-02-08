@@ -6,6 +6,8 @@
 <title>Chocolate Day Gift</title>
 
 <style>
+*{box-sizing:border-box}
+
 body{
   margin:0;
   height:100vh;
@@ -14,13 +16,38 @@ body{
   align-items:center;
   background:linear-gradient(#ffe7c9,#f6c89f);
   font-family:Segoe UI,sans-serif;
+  overflow:hidden;
 }
 
-/* Gift Container */
+/* ===== Falling Chocolates ===== */
+.fall{
+  position:absolute;
+  top:-10%;
+  font-size:22px;
+  animation:fall linear infinite;
+  opacity:.6;
+  pointer-events:none;
+  z-index:0;
+}
+
+.fall:nth-child(1){left:10%;animation-duration:12s}
+.fall:nth-child(2){left:25%;animation-duration:9s}
+.fall:nth-child(3){left:45%;animation-duration:14s}
+.fall:nth-child(4){left:65%;animation-duration:11s}
+.fall:nth-child(5){left:85%;animation-duration:13s}
+
+@keyframes fall{
+  to{
+    transform:translateY(120vh) rotate(360deg);
+  }
+}
+
+/* ===== Gift Container ===== */
 .gift{
   width:280px;
   height:360px;
   position:relative;
+  z-index:2;
 }
 
 /* Lid */
@@ -76,13 +103,12 @@ body{
   background:white;
   border-radius:20px;
   padding:22px;
-  box-sizing:border-box;
   text-align:center;
   transition:0.9s ease;
 }
 
 .card h2{
-  margin-top:10px;
+  margin:8px 0;
 }
 
 .card p{
@@ -105,6 +131,14 @@ body{
 
 <body>
 
+<!-- BACKGROUND FALLING -->
+<div class="fall">🍫</div>
+<div class="fall">🍬</div>
+<div class="fall">🤎</div>
+<div class="fall">🍪</div>
+<div class="fall">💖</div>
+
+<!-- GIFT -->
 <div class="gift" id="gift">
 
   <div class="lid">
@@ -116,6 +150,7 @@ body{
 
     <div class="card">
       <h2>Happy Chocolate Day 🍫</h2>
+      <h2>আমার সোনা যামিনী</h2>
 
       <p>
         চকলেট যেমন মিষ্টি,<br>
