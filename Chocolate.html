@@ -1,158 +1,77 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chocolate Gift 🍫</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<title>Chocolate Gift</title>
 
 <style>
-*{box-sizing:border-box}
-
 body{
-  margin:0;
-  height:100vh;
-  background:radial-gradient(circle,#fff1d6,#f2caa7);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Poppins,sans-serif;
-  overflow:hidden;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f7e2c8;
+    font-family: sans-serif;
 }
 
-/* GIFT BOX */
+/* main box */
 .gift-area{
-  position:relative;
-  width:260px;
-  height:260px;
+    position:relative;
+    width:280px;
+    height:420px;
 }
 
-/* BOX BASE */
-.box{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:160px;
-  background:linear-gradient(#8b4513,#5a2e00);
-  border-radius:0 0 20px 20px;
-  box-shadow:0 20px 40px rgba(0,0,0,.3);
-}
-
-/* BOX LID */
-.lid{
-  position:absolute;
-  top:60px;
-  width:100%;
-  height:70px;
-  background:linear-gradient(#a0522d,#6b3a00);
-  border-radius:20px;
-  transform-origin:bottom center;
-  transition:transform 1s ease;
-  z-index:3;
-}
-
-/* RIBBON */
-.ribbon{
-  position:absolute;
-  width:30px;
-  height:100%;
-  background:#ffd166;
-  left:50%;
-  transform:translateX(-50%);
-}
-.ribbon::after{
-  content:"";
-  position:absolute;
-  top:60px;
-  width:100%;
-  height:30px;
-  background:#ffd166;
-  transform:rotate(90deg);
-}
-
-/* CHOCOLATE ON TOP */
-.choco{
-  position:absolute;
-  top:10px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:42px;
-  cursor:pointer;
-  animation:pulse 1.4s infinite;
-  z-index:5;
-}
-
-@keyframes pulse{
-  50%{transform:translateX(-50%) scale(1.15)}
-}
-
-/* OPEN STATE */
-.open .lid{
-  transform:rotateX(120deg);
-}
-
-/* CONTENT INSIDE */
-.content{
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-  opacity:0;
-  transition:opacity 1s ease;
-}
-
-.open .content{
-  opacity:1;
-}
-
+/* card */
 .card{
-  background:#fff;
-  border-radius:20px;
-  padding:18px;
-  box-shadow:0 15px 30px rgba(0,0,0,.2);
-  animation:rise 1.4s ease;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    box-sizing:border-box;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    display:none;
 }
 
-@keyframes rise{
-  from{transform:translateY(40px);opacity:0}
-  to{transform:none;opacity:1}
+/* gift box */
+.box{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:160px;
+    background:#7a3b00;
+    border-radius:0 0 20px 20px;
 }
 
-h1{
-  font-family:Sacramento,cursive;
-  font-size:34px;
-  color:#6b3a00;
-  margin:6px 0;
+/* ribbon */
+.ribbon{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    width:50px;
+    height:160px;
+    background:#f5c16c;
 }
 
-.message{
-  font-size:14px;
-  line-height:1.6;
-  color:#444;
+/* chocolate */
+.choco{
+    position:absolute;
+    top:120px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:40px;
+    cursor:pointer;
 }
 
-.highlight{
-  color:#6b3a00;
-  font-weight:500;
-}
-
-/* FLOATING HEARTS */
-.spark{
-  position:absolute;
-  font-size:18px;
-  animation:floatUp 1.2s ease-out forwards;
-  pointer-events:none;
-}
-
-@keyframes floatUp{
-  to{
-    transform:translateY(-120px) scale(.2);
-    opacity:0;
-  }
+/* show card */
+.open .card{
+    display:block;
 }
 </style>
 </head>
@@ -160,54 +79,30 @@ h1{
 <body>
 
 <div class="gift-area" id="gift">
-  <div class="choco" id="tapChoco">🍫</div>
-
-  <div class="lid">
-    <div class="ribbon"></div>
-  </div>
-
-  <div class="box"></div>
-
-  <div class="content">
+    
     <div class="card">
-      <h1>Happy Chocolate Day</h1>
-      <div class="message">
-        <span class="highlight">আমার সোনা ফুচু</span><br><br>
-
-        চকলেট যেমন মিষ্টি,<br>
-        তুমিও ঠিক তেমনই… 🤍<br><br>
-
-        তোমার হাসিতে<br>
-        আমার সব দুঃখ গলে যায়,<br>
-        ঠিক চকলেটের মতোই। 🍫<br><br>
-
-        <span class="highlight">
-          এই চকলেটটা আমার ভালোবাসার স্বাদ।
-        </span><br><br>
-
-        তোমারই সোনা বুবু ❤️
-      </div>
+        <h2>Happy Chocolate Day 🍫</h2>
+        <p>
+            চকলেট যেমন মিষ্টি,<br>
+            তুমিও ঠিক তেমনই 🤍<br><br>
+            এই চকলেটটা আমার<br>
+            ভালোবাসার স্বাদ 🍫<br><br>
+            তোমারই সোনা বুবু ❤️
+        </p>
     </div>
-  </div>
+
+    <div class="choco" onclick="openGift()">🍫</div>
+
+    <div class="box">
+        <div class="ribbon"></div>
+    </div>
+
 </div>
 
 <script>
-const choco=document.getElementById("tapChoco");
-const gift=document.getElementById("gift");
-
-choco.addEventListener("click",()=>{
-  gift.classList.add("open");
-
-  for(let i=0;i<20;i++){
-    const s=document.createElement("div");
-    s.className="spark";
-    s.innerHTML=["🤎","💖","🍫","✨"][Math.floor(Math.random()*4)];
-    s.style.left=(120+Math.random()*20-10)+"px";
-    s.style.top="140px";
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),1200);
-  }
-});
+function openGift(){
+    document.getElementById("gift").classList.add("open");
+}
 </script>
 
 </body>
