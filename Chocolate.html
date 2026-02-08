@@ -3,117 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Chocolate Day</title>
+<title>Chocolate Day Gift</title>
 
 <style>
 body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(#ffe6c7,#f5cba7);
-    font-family: "Segoe UI", sans-serif;
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(#ffe7c9,#f6c89f);
+  font-family:Segoe UI,sans-serif;
 }
 
-/* Gift Box */
+/* Gift Container */
+.gift{
+  width:280px;
+  height:360px;
+  position:relative;
+}
+
+/* Lid */
+.lid{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:90px;
+  background:#6b3a00;
+  border-radius:20px 20px 10px 10px;
+  transition:0.8s ease;
+  z-index:3;
+}
+
+/* Chocolate button */
+.choco{
+  position:absolute;
+  top:-30px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:38px;
+  cursor:pointer;
+}
+
+/* Box */
 .box{
-    width:280px;
-    height:360px;
-    background:#7b3f00;
-    border-radius:20px;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 15px 30px rgba(0,0,0,0.3);
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:280px;
+  background:#7b3f00;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 20px 30px rgba(0,0,0,0.3);
 }
 
 /* Ribbon */
 .ribbon{
-    position:absolute;
-    width:60px;
-    height:100%;
-    background:#f7c873;
-    left:50%;
-    transform:translateX(-50%);
+  position:absolute;
+  width:60px;
+  height:100%;
+  background:#f6c76f;
+  left:50%;
+  transform:translateX(-50%);
 }
 
-/* Chocolate Button */
-.choco{
-    position:absolute;
-    top:-40px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:40px;
-    cursor:pointer;
-    transition:transform 0.3s;
-}
-
-.choco:hover{
-    transform:translateX(-50%) scale(1.2);
-}
-
-/* Card inside */
+/* Card */
 .card{
-    position:absolute;
-    top:100%;
-    left:0;
-    width:100%;
-    height:100%;
-    background:white;
-    border-radius:20px;
-    padding:25px;
-    box-sizing:border-box;
-    text-align:center;
-    transition:top 0.8s ease;
-    line-height:1.6;
+  position:absolute;
+  bottom:-100%;
+  width:100%;
+  height:100%;
+  background:white;
+  border-radius:20px;
+  padding:22px;
+  box-sizing:border-box;
+  text-align:center;
+  transition:0.9s ease;
 }
 
 .card h2{
-    margin-top:10px;
+  margin-top:10px;
 }
 
 .card p{
-    margin:15px 0;
-    font-size:17px;
+  margin:14px 0;
+  font-size:16px;
+  line-height:1.6;
 }
 
-/* Open animation */
-.box.open .card{
-    top:0;
+/* OPEN STATE */
+.gift.open .lid{
+  top:-120px;
+  transform:rotate(-8deg);
+}
+
+.gift.open .card{
+  bottom:0;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box" id="giftBox">
+<div class="gift" id="gift">
 
-    <div class="choco" onclick="openBox()">🍫</div>
+  <div class="lid">
+    <div class="choco" onclick="openGift()">🍫</div>
+  </div>
+
+  <div class="box">
     <div class="ribbon"></div>
 
     <div class="card">
-        <h2>Happy Chocolate Day 🍫</h2>
+      <h2>Happy Chocolate Day 🍫</h2>
 
-        <p>
-            চকলেট যেমন মিষ্টি,<br>
-            তুমিও ঠিক তেমনই 🤍
-        </p>
+      <p>
+        চকলেট যেমন মিষ্টি,<br>
+        তুমিও ঠিক তেমনই 🤍
+      </p>
 
-        <p>
-            এই চকলেটটা আমার<br>
-            ভালোবাসার স্বাদ 🍫
-        </p>
+      <p>
+        এই চকলেটটা আমার<br>
+        ভালোবাসার স্বাদ 🍫
+      </p>
 
-        <p>
-            তোমারই সোনা বউ ❤️
-        </p>
+      <p>
+        তোমারই সোনা বুবু ❤️
+      </p>
     </div>
+  </div>
 
 </div>
 
 <script>
-function openBox(){
-    document.getElementById("giftBox").classList.add("open");
+function openGift(){
+  document.getElementById("gift").classList.add("open");
 }
 </script>
 
