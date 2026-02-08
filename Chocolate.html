@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chocolate Day 🍫</title>
+<title>Chocolate Gift 🍫</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
@@ -12,71 +12,127 @@
 
 body{
   margin:0;
-  min-height:100vh;
-  background:radial-gradient(circle at top,#fff1d6,#f7dcc3);
+  height:100vh;
+  background:radial-gradient(circle,#fff1d6,#f2caa7);
   display:flex;
   justify-content:center;
   align-items:center;
   font-family:Poppins,sans-serif;
   overflow:hidden;
-  padding:15px;
 }
 
-/* Soft floating choco */
-.float{
+/* GIFT BOX */
+.gift-area{
+  position:relative;
+  width:260px;
+  height:260px;
+}
+
+/* BOX BASE */
+.box{
   position:absolute;
-  top:-10%;
-  font-size:20px;
-  opacity:.35;
-  animation:floatDown linear infinite;
-}
-.float:nth-child(1){left:15%;animation-duration:12s}
-.float:nth-child(2){left:40%;animation-duration:15s}
-.float:nth-child(3){left:70%;animation-duration:10s}
-
-@keyframes floatDown{
-  to{transform:translateY(120vh) rotate(360deg)}
+  bottom:0;
+  width:100%;
+  height:160px;
+  background:linear-gradient(#8b4513,#5a2e00);
+  border-radius:0 0 20px 20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
 }
 
-/* Card */
+/* BOX LID */
+.lid{
+  position:absolute;
+  top:60px;
+  width:100%;
+  height:70px;
+  background:linear-gradient(#a0522d,#6b3a00);
+  border-radius:20px;
+  transform-origin:bottom center;
+  transition:transform 1s ease;
+  z-index:3;
+}
+
+/* RIBBON */
+.ribbon{
+  position:absolute;
+  width:30px;
+  height:100%;
+  background:#ffd166;
+  left:50%;
+  transform:translateX(-50%);
+}
+.ribbon::after{
+  content:"";
+  position:absolute;
+  top:60px;
+  width:100%;
+  height:30px;
+  background:#ffd166;
+  transform:rotate(90deg);
+}
+
+/* CHOCOLATE ON TOP */
+.choco{
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:42px;
+  cursor:pointer;
+  animation:pulse 1.4s infinite;
+  z-index:5;
+}
+
+@keyframes pulse{
+  50%{transform:translateX(-50%) scale(1.15)}
+}
+
+/* OPEN STATE */
+.open .lid{
+  transform:rotateX(120deg);
+}
+
+/* CONTENT INSIDE */
+.content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+.open .content{
+  opacity:1;
+}
+
 .card{
   background:#fff;
-  max-width:360px;
-  width:100%;
-  padding:26px 22px;
-  border-radius:28px;
-  text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.18);
-  position:relative;
-  animation:fadeUp 1.4s ease;
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 15px 30px rgba(0,0,0,.2);
+  animation:rise 1.4s ease;
 }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(35px)}
-  to{opacity:1;transform:none}
-}
-
-.choco-top{
-  font-size:46px;
-  animation:slowFloat 3s ease-in-out infinite;
-}
-
-@keyframes slowFloat{
-  50%{transform:translateY(-10px)}
+@keyframes rise{
+  from{transform:translateY(40px);opacity:0}
+  to{transform:none;opacity:1}
 }
 
 h1{
   font-family:Sacramento,cursive;
-  font-size:40px;
+  font-size:34px;
   color:#6b3a00;
-  margin:8px 0;
+  margin:6px 0;
 }
 
 .message{
-  font-size:15px;
-  line-height:1.7;
+  font-size:14px;
+  line-height:1.6;
   color:#444;
-  margin-top:14px;
 }
 
 .highlight{
@@ -84,100 +140,72 @@ h1{
   font-weight:500;
 }
 
-.signature{
-  margin-top:18px;
-  font-family:Sacramento,cursive;
-  font-size:26px;
-  color:#4a2500;
-}
-
-/* Chocolate button fixed inside card */
-.choco-btn{
-  margin-top:18px;
-  font-size:36px;
-  cursor:pointer;
-  animation:heartbeat 1.6s infinite;
-}
-
-@keyframes heartbeat{
-  50%{transform:scale(1.15)}
-}
-
-/* Melt hearts */
-.melt{
+/* FLOATING HEARTS */
+.spark{
   position:absolute;
   font-size:18px;
-  animation:melt 1.2s ease-out forwards;
+  animation:floatUp 1.2s ease-out forwards;
   pointer-events:none;
 }
 
-@keyframes melt{
+@keyframes floatUp{
   to{
-    transform:translate(var(--x),var(--y)) scale(.2);
+    transform:translateY(-120px) scale(.2);
     opacity:0;
   }
 }
-
-audio{display:none}
 </style>
 </head>
 
 <body>
 
-<div class="float">🍫</div>
-<div class="float">🤎</div>
-<div class="float">💖</div>
+<div class="gift-area" id="gift">
+  <div class="choco" id="tapChoco">🍫</div>
 
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3c89c1f8f5.mp3">
-</audio>
-
-<div class="card">
-  <div class="choco-top">🍫</div>
-  <h1>Happy Chocolate Day</h1>
-
-  <span class="highlight">আমার সোনা ফুচু</span><br>
-  <span class="highlight">09/02/2026</span>
-
-  <div class="message">
-    চকলেট যেমন মিষ্টি,<br>
-    তুমিও ঠিক তেমনই… 🤍<br><br>
-
-    তোমার হাসিতে<br>
-    আমার সব দুঃখ গলে যায়,<br>
-    ঠিক চকলেটের মতোই। 🍫<br><br>
-
-    <span class="highlight">
-      এই চকলেটটা আমার ভালোবাসার স্বাদ।
-    </span>
+  <div class="lid">
+    <div class="ribbon"></div>
   </div>
 
-  <div class="signature">
-    তোমারই সোনা বুবু ❤️
-  </div>
+  <div class="box"></div>
 
-  <!-- Chocolate trigger -->
-  <div class="choco-btn" id="choco">🍫</div>
+  <div class="content">
+    <div class="card">
+      <h1>Happy Chocolate Day</h1>
+      <div class="message">
+        <span class="highlight">আমার সোনা ফুচু</span><br><br>
+
+        চকলেট যেমন মিষ্টি,<br>
+        তুমিও ঠিক তেমনই… 🤍<br><br>
+
+        তোমার হাসিতে<br>
+        আমার সব দুঃখ গলে যায়,<br>
+        ঠিক চকলেটের মতোই। 🍫<br><br>
+
+        <span class="highlight">
+          এই চকলেটটা আমার ভালোবাসার স্বাদ।
+        </span><br><br>
+
+        তোমারই সোনা বুবু ❤️
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-const choco=document.getElementById("choco");
+const choco=document.getElementById("tapChoco");
+const gift=document.getElementById("gift");
 
 choco.addEventListener("click",()=>{
-  const r=choco.getBoundingClientRect();
-  const x=r.left+r.width/2;
-  const y=r.top;
+  gift.classList.add("open");
 
-  for(let i=0;i<22;i++){
-    const m=document.createElement("div");
-    m.className="melt";
-    m.innerHTML=["🤎","💖","🍫","✨"][Math.floor(Math.random()*4)];
-    m.style.left=x+"px";
-    m.style.top=y+"px";
-    m.style.setProperty("--x",(Math.random()*260-130)+"px");
-    m.style.setProperty("--y",(Math.random()*-260)+"px");
-    document.body.appendChild(m);
-    setTimeout(()=>m.remove(),1200);
+  for(let i=0;i<20;i++){
+    const s=document.createElement("div");
+    s.className="spark";
+    s.innerHTML=["🤎","💖","🍫","✨"][Math.floor(Math.random()*4)];
+    s.style.left=(120+Math.random()*20-10)+"px";
+    s.style.top="140px";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),1200);
   }
 });
 </script>
