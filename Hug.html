@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chocolate Day Gift</title>
+<title>Hug Day 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -16,146 +16,146 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:radial-gradient(circle at top,#ffe6c7,#f2b36f);
-  font-family:'Segoe UI',sans-serif;
-}
-
-/* GIFT */
-.gift{
-  width:300px;
-  height:380px;
-  position:relative;
-  perspective:1000px;
-}
-
-/* LID */
-.lid{
-  position:absolute;
-  top:0;
-  width:100%;
-  height:95px;
-  background:linear-gradient(#7a3e00,#5a2b00);
-  border-radius:20px 20px 12px 12px;
-  transform-origin:top;
-  transition:0.9s cubic-bezier(.4,2,.3,1);
-  z-index:5;
-  box-shadow:0 12px 25px rgba(0,0,0,0.35);
-}
-
-/* CHOCOLATE */
-.choco{
-  position:absolute;
-  top:-38px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:42px;
-  cursor:pointer;
-  filter:drop-shadow(0 6px 6px rgba(0,0,0,.4));
-}
-
-/* BOX */
-.box{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:300px;
-  background:linear-gradient(#8b4513,#5c2b00);
-  border-radius:22px;
+  background:radial-gradient(circle at top,#eef4ff,#ffffff);
+  font-family:Poppins,sans-serif;
   overflow:hidden;
-  box-shadow:
-    inset 0 6px 12px rgba(255,255,255,.15),
-    0 25px 40px rgba(0,0,0,.45);
 }
 
-/* RIBBON */
-.ribbon-v{
-  position:absolute;
-  width:60px;
-  height:100%;
-  background:linear-gradient(#ffd36e,#f2b84b);
-  left:50%;
-  transform:translateX(-50%);
+/* MAIN */
+.scene{
+  width:360px;
+  max-width:95%;
+  position:relative;
+  text-align:center;
 }
 
-.ribbon-h{
+/* ARMS */
+.arm{
   position:absolute;
-  height:55px;
-  width:100%;
   top:120px;
-  background:linear-gradient(#ffd36e,#f2b84b);
+  width:160px;
+  height:220px;
+  background:linear-gradient(#ffd6c9,#ffb7a5);
+  border-radius:120px;
+  transition:1.2s cubic-bezier(.2,1,.3,1);
+  filter:blur(0.2px);
+}
+
+.arm.left{
+  left:-120px;
+  transform:rotate(18deg);
+}
+
+.arm.right{
+  right:-120px;
+  transform:rotate(-18deg);
+}
+
+/* HUG ACTION */
+.scene.hug .arm.left{
+  left:20px;
+  transform:rotate(0deg);
+}
+
+.scene.hug .arm.right{
+  right:20px;
+  transform:rotate(0deg);
 }
 
 /* CARD */
 .card{
-  position:absolute;
-  bottom:-110%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(#fff,#f7f7f7);
-  border-radius:20px;
-  padding:24px;
-  text-align:center;
-  transition:1s cubic-bezier(.2,1,.3,1);
+  background:#fff;
+  padding:26px;
+  border-radius:26px;
+  box-shadow:0 30px 60px rgba(0,0,0,.18);
+  position:relative;
+  z-index:2;
+  transition:.8s;
 }
 
-.card h2{
-  margin:8px 0;
+.scene.hug .card{
+  transform:scale(0.97);
+  filter:blur(0.4px);
 }
 
-.card p{
-  margin:16px 0;
-  font-size:16px;
-  line-height:1.6;
+h1{
+  font-family:Sacramento,cursive;
+  font-size:38px;
+  color:#5c7cfa;
+  margin:6px 0;
 }
 
-/* OPEN STATE */
-.gift.open .lid{
-  transform:rotateX(110deg);
+.message{
+  font-size:15px;
+  line-height:1.7;
+  color:#444;
+  margin-top:14px;
 }
 
-.gift.open .card{
-  bottom:0;
+.highlight{
+  color:#5c7cfa;
+  font-weight:500;
+}
+
+.signature{
+  margin-top:18px;
+  font-family:Sacramento,cursive;
+  font-size:26px;
+  color:#3b5bdb;
+}
+
+/* BUTTON */
+.hug-btn{
+  margin-top:18px;
+  font-size:34px;
+  cursor:pointer;
+  animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.15)}
 }
 </style>
 </head>
 
 <body>
 
-<div class="gift" id="gift">
+<div class="scene" id="scene">
 
-  <div class="lid">
-    <div class="choco" onclick="openGift()">🍫</div>
-  </div>
+  <!-- ARMS -->
+  <div class="arm left"></div>
+  <div class="arm right"></div>
 
-  <div class="box">
-    <div class="ribbon-v"></div>
-    <div class="ribbon-h"></div>
+  <!-- CARD -->
+  <div class="card">
+    <h1>Happy Hug Day</h1>
 
-    <div class="card">
-      <h2>Happy Chocolate Day 🍫</h2>
-      <h3>আমার সোনা যামিনী</h3>
+    <div class="message">
+      কখনো যদি মনটা ভারী হয়ে যায়,<br>
+      কিছু বলার দরকার নেই—<br>
+      <span class="highlight">শুধু আমার বুকে এসে চুপ করে থেকো।</span> 🤍<br><br>
 
-      <p>
-        চকলেট যেমন ধীরে গলে,<br>
-        তুমিও তেমনই আমার হৃদয়ে 🤍
-      </p>
+      এই আলিঙ্গন কোনো প্রশ্ন করবে না,<br>
+      কোনো বিচার না—<br>
+      <span class="highlight">শুধু তোমাকে নিরাপদ রাখবে।</span><br><br>
 
-      <p>
-        এইটা শুধু চকলেট না,<br>
-        এটা আমার ভালোবাসা।
-      </p>
-
-      <p>
-        — তোমারই বুবু ❤️
-      </p>
+      যতদিন আছি,<br>
+      আমার এই আলিঙ্গন<br>
+      <span class="highlight">সবসময় তোমার।</span>
     </div>
-  </div>
 
+    <div class="signature">
+      নীরবে, গভীরভাবে—<br>
+      তোমারই সোনা বুবু ❤️
+    </div>
+
+    <div class="hug-btn" onclick="hug()">🫂</div>
+  </div>
 </div>
 
 <script>
-function openGift(){
-  document.getElementById("gift").classList.add("open");
+function hug(){
+  document.getElementById("scene").classList.add("hug");
 }
 </script>
 
